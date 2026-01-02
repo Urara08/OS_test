@@ -33,10 +33,10 @@ fn efi_main(handle: Handle, st: SystemTable<Boot>) -> Status {
                 let offset = y * stride + x;
                 let pixel_ptr = fb.add(offset);
                 match info.pixel_format() {
-                    PixelFormat::Rgb => ptr::write_volatile(pixel_ptr, 0x0000FF),   // 青
-                    PixelFormat::Bgr => ptr::write_volatile(pixel_ptr, 0xFF0000),   // 青
-                    _ => {}
-                }
+                    PixelFormat::Rgb => ptr::write_volatile(pixel_ptr, 0x000000FF), // 青
+                    PixelFormat::Bgr => ptr::write_volatile(pixel_ptr, 0x000000FF), // QEMUでは大体これでOK
+    _ => {}
+}
             }
         }
     }
